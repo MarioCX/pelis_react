@@ -1,6 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom"; // Importa useHistory para la redirección
 
 function Header() {
+  const [searchTerm, setSearchTerm] = useState(""); // Estado para el término de búsqueda
+  const history = useHistory(); // Objeto history para la redirección
+
+  // Manejador de cambios en el campo de búsqueda
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  // Manejador del envío del formulario de búsqueda
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    // Redirige al usuario a la página de resultados de búsqueda
+    history.push(`/search/${searchTerm}`);
+  };
+
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
@@ -62,12 +78,14 @@ function Header() {
               </ul>
             </li>
           </ul>
-          <form className="d-flex" role="search">
+          <form className="d-flex" onSubmit={handleSearchSubmit}>
             <input
               className="form-control me-2"
               type="search"
               placeholder="Search"
               aria-label="Search"
+              value={searchTerm}
+              onChange={handleSearchChange}
             />
             <button className="btn btn-outline-success" type="submit">
               Search
