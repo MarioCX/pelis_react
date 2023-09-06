@@ -25,3 +25,17 @@ export async function fetchShowDetails(id) {
     throw error;
   }
 }
+
+export async function fetchShowDetailsEpisodies(id) {
+  try {
+    const response = await fetch(`https://api.tvmaze.com/shows/${id}/episodes`);
+    if (!response.ok) {
+      throw new Error("Error en la solicitud a la API");
+    }
+    const data = await response.json();
+    return data; // Devuelve los detalles del programa recuperados
+  } catch (error) {
+    console.error("Error haciendo fetch de detalles del programa", error);
+    throw error;
+  }
+}

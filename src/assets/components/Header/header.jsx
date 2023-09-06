@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom"; // Importa useHistory para la redirección
+import { useNavigate } from "react-router-dom"; // Importa useHistory para la redirección
 
 function Header() {
   const [searchTerm, setSearchTerm] = useState(""); // Estado para el término de búsqueda
-  const history = useHistory(); // Objeto history para la redirección
+  const navigate = useNavigate(); // Objeto history para la redirección
 
   // Manejador de cambios en el campo de búsqueda
   const handleSearchChange = (e) => {
@@ -14,13 +14,13 @@ function Header() {
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     // Redirige al usuario a la página de resultados de búsqueda
-    history.push(`/search/${searchTerm}`);
+    navigate(`/pelicula/${searchTerm}`);
   };
 
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+    <nav className="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
+        <a className="navbar-brand" href="">
           DE PELIS
         </a>
         <button
@@ -37,19 +37,19 @@ function Header() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
+              <a className="nav-link active" aria-current="page" href="">
                 Home
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <a className="nav-link" href="">
                 Link
               </a>
             </li>
             <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"
-                href="#"
+                href=""
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
@@ -58,12 +58,12 @@ function Header() {
               </a>
               <ul className="dropdown-menu">
                 <li>
-                  <a className="dropdown-item" href="#">
+                  <a className="dropdown-item" href="">
                     Action
                   </a>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="#">
+                  <a className="dropdown-item" href="">
                     Another action
                   </a>
                 </li>
@@ -71,14 +71,14 @@ function Header() {
                   <hr className="dropdown-divider" />
                 </li>
                 <li>
-                  <a className="dropdown-item" href="#">
+                  <a className="dropdown-item" href="">
                     Something else here
                   </a>
                 </li>
               </ul>
             </li>
           </ul>
-          <form className="d-flex" onSubmit={handleSearchSubmit}>
+          <form className="d-flex" onSubmit={(e) => handleSearchSubmit(e)}>
             <input
               className="form-control me-2"
               type="search"

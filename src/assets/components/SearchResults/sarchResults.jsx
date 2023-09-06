@@ -29,7 +29,7 @@ function SearchResults() {
         <div className="row row-cols-1 row-cols-md-6 g-4">
           {searchResults.map((result) => (
             <div className="col mb-4" key={result.show.id}>
-              <a href={`/detalle/${result.show.id}`} className="card-link">
+              <a href={`/pelicula/${result.show.id}`} className="card-link">
                 <div className="card card-sm h-100">
                   <img
                     src={result.show.image.medium}

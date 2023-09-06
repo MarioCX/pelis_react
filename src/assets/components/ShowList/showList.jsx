@@ -3,17 +3,15 @@ import React, { useEffect, useState } from "react";
 import { fetchShows } from "../../services/api";
 import "./showList.css";
 
-
 function ShowList() {
   const [showData, setShowData] = useState([]);
 
   useEffect(() => {
     // Llama a la función fetchShows para obtener los datos
-    fetchShows("boys")
+    fetchShows("guys")
       .then((data) => setShowData(data))
       .catch((error) => console.error("Error al obtener datos de la API", error));
   }, []);
-  // El segundo argumento [] asegura que useEffect se ejecute solo una vez al montar el componente
 
   return (
     <div className="showContainer p-4">
@@ -21,10 +19,10 @@ function ShowList() {
       <div className="row row-cols-1 row-cols-md-6 g-4">
         {showData.map((show) => (
           <div className="col mb-4" key={show.show.id}>
-            <a href={`/detalle/${show.show.id}`} className="card-link">
+            <a href={`/pelicula/${show.show.id}`} className="card-link">
               <div className="card card-sm h-100">
                 <img
-                  src={show.show.image.medium}
+                  src={show.show.image?.medium} 
                   className="card-img-top"
                   alt={show.show.name}
                 />
