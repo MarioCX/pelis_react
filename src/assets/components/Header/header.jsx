@@ -2,26 +2,12 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Importa useHistory para la redirección
 
 function Header() {
-  const [searchTerm, setSearchTerm] = useState(""); // Estado para el término de búsqueda
-  const navigate = useNavigate(); // Objeto history para la redirección
-
-  // Manejador de cambios en el campo de búsqueda
-  const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
-
-  // Manejador del envío del formulario de búsqueda
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    // Redirige al usuario a la página de resultados de búsqueda
-    navigate(`/pelicula/${searchTerm}`);
-  };
 
   return (
     <nav className="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
       <div className="container-fluid">
-        <a className="navbar-brand" href="">
-          DE PELIS
+        <a className="navbar-brand" href="/" >
+          DE PELIS 🍿🎬
         </a>
         <button
           className="navbar-toggler"
@@ -37,7 +23,7 @@ function Header() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="">
+              <a className="nav-link active" aria-current="page" href="/">
                 Home
               </a>
             </li>
@@ -62,23 +48,10 @@ function Header() {
                     Action
                   </a>
                 </li>
-                <li>
-                  <a className="dropdown-item" href="">
-                    Another action
-                  </a>
-                </li>
-                <li>
-                  <hr className="dropdown-divider" />
-                </li>
-                <li>
-                  <a className="dropdown-item" href="">
-                    Something else here
-                  </a>
-                </li>
               </ul>
             </li>
           </ul>
-          <form className="d-flex" onSubmit={(e) => handleSearchSubmit(e)}>
+          {/* <form className="d-flex" onSubmit={(e) => handleSearchSubmit(e)}>
             <input
               className="form-control me-2"
               type="search"
@@ -90,7 +63,7 @@ function Header() {
             <button className="btn btn-outline-success" type="submit">
               Search
             </button>
-          </form>
+          </form> */}
         </div>
       </div>
     </nav>
