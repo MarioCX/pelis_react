@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchShowDetails } from "../../services/api";
 import { fetchShowDetailsEpisodies } from "../../services/api";
+import { fetchShowActors } from "../../services/api";
 import "./showDetail.css";
 
 function ShowDetail() {
   const { id } = useParams();
   const [show, setShow] = useState([]);
   const [episodes, setEpisodes] = useState([]);
+  const [actors, setActors] = useState([]);
 
   useEffect(() => {
     fetchShowDetails(id)
@@ -22,6 +24,14 @@ function ShowDetail() {
       .then((data) => setEpisodes(data))
       .catch((error) =>
         console.error("Error al obtener detalles de los episodios", error)
+      );
+  }, [id]);
+
+  useEffect(() => {
+    fetchShowActors(id)
+      .then((data) => setActors(data))
+      .catch((error) =>
+        console.error("Error al obtener detalles de los actores", error)
       );
   }, [id]);
 
@@ -71,7 +81,7 @@ function ShowDetail() {
               {show && show.image && show.image.medium && (
                 <img
                   src={show.image.medium}
-                  className="img-fluid rounded-start"
+                  className="img-fluid rounded-start "
                   alt={show.name}
                 />
               )}
@@ -95,11 +105,53 @@ function ShowDetail() {
             </div>
           </div>
         </div>
+        {/* Actores en card-group */}
+        <div className="container mt-4">
+          <div className="accordion" id="accordionExample">
+            <div className="accordion-item">
+              <h2 className="accordion-header">
+                <button
+                  className="accordion-button"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseOne"
+                  aria-expanded="true"
+                  aria-controls="collapseOne"
+                >
+                  Actores
+                </button>
+              </h2>
+              <div
+                id="collapseOne"
+                className="accordion-collapse collapse show"
+                data-bs-parent="#accordionExample"
+              >
+                <div className="accordion-body"></div>
+                <div className="card-group">
+                  {actors.map((actor) => (
+                    <div className="custom-card" key={actor.person.id}>
+                      <img
+                        src={actor.person.image?.medium}
+                        className="custom-card-img"
+                        alt={actor.person.name}
+                      />
+                      <div className="card-body">
+                        <h5 className="card-title">{actor.person.name}</h5>
+                        <p className="card-text">{actor.character?.name}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Episodios */}
 
-      <div className="container-fluid">
+      <div className="container-fluid mb-4">
+        <h3>Temporadas y episodios</h3>
         <div className="accordion" id="accordionEpisodes">
           {Object.keys(episodesBySeason).map((season) => (
             <div className="accordion-item" key={season}>

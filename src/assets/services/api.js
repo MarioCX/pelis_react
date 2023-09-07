@@ -39,3 +39,18 @@ export async function fetchShowDetailsEpisodies(id) {
     throw error;
   }
 }
+
+export async function fetchShowActors(showId) {
+  try {
+    const response = await fetch(`https://api.tvmaze.com/shows/${showId}/cast`);
+  
+    if (!response.ok) {
+      throw new Error("Error en la solicitud a la API");
+    }     
+    const data = await response.json();
+    return data; // Devuelve los actores recuperados
+  } catch (error) {
+    console.error("Error haciendo fetch de actores", error);
+    throw error;
+  }
+}

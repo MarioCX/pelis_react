@@ -6,3 +6,12 @@
     width: 100vw;
     padding: 0;
 }
+/* Estilos personalizados para las tarjetas */
+.custom-card {
+    width: 10rem; /* Personaliza el ancho según tus preferencias */
+    margin: 0.5rem; /* Personaliza el margen según tus preferencias */
+  }
+  
+  .custom-card-img {
+    max-height: 150px; /* Personaliza la altura máxima de la imagen */
+  }

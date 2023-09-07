@@ -1,3 +1,7 @@
+
 .containerBody {
+  background: linear-gradient(to bottom, #1a1a1a, #333333); /* Colores oscuros personalizados */
   min-height: 77vh;
+  color: white;
+  
 }
